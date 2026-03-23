@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:netlify": "netlify dev",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "ollama": "^0.5.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

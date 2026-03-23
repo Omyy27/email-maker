@@ -2,7 +2,7 @@
 
 > Transforma tus ideas en correos impecables con IA.
 
-Lettercraft es una aplicación React que usa la API de Claude (Anthropic) para convertir borradores en correos profesionales con el tono que elijas.
+Lettercraft es una aplicación React que usa Ollama Cloud para convertir borradores en correos profesionales con el tono que elijas.
 
 ---
 
@@ -31,18 +31,23 @@ cp .env.example .env
 Luego abre `.env` y reemplaza el valor:
 
 ```env
-VITE_ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxxxxxx
+OLLAMA_API_KEY=tu_api_key_ollama
 ```
 
-> Puedes obtener tu API key en: https://console.anthropic.com/
+Opcionalmente puedes definir el modelo:
+
+```env
+OLLAMA_MODEL=gpt-oss:120b
+VITE_OLLAMA_MODEL=gpt-oss:120b
+```
 
 ### 4. Inicia el servidor de desarrollo
 
 ```bash
-npm run dev
+npm run dev:netlify
 ```
 
-La app estará disponible en **http://localhost:3000**
+La app estará disponible en **http://localhost:8888** (Netlify Dev) y el frontend en Vite.
 
 ---
 
@@ -81,7 +86,8 @@ lettercraft/
 
 | Comando         | Descripción                        |
 |-----------------|------------------------------------|
-| `npm run dev`   | Servidor de desarrollo (puerto 3000) |
+| `npm run dev`   | Solo Vite (sin funciones serverless) |
+| `npm run dev:netlify` | Vite + Netlify Functions (recomendado) |
 | `npm run build` | Build de producción en `/dist`     |
 | `npm run preview` | Preview del build de producción  |
 
@@ -89,8 +95,7 @@ lettercraft/
 
 ## ⚠️ Nota de seguridad
 
-La API key se expone en el cliente (navegador). Esto es aceptable para uso **local o personal**.  
-Para un entorno de producción público, mueve las llamadas a la API a un backend (Node.js, Express, etc.) y nunca expongas la key en el frontend.
+La API key de Ollama Cloud se usa desde la Netlify Function y no se expone en el navegador.
 
 ---
 

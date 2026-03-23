@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { SYSTEM_PROMPT, buildUserPrompt, TONES } from '../constants'
 
-const API_KEY = import.meta.env.VITE_ANTHROPIC_API_KEY
+const OLLAMA_MODEL = import.meta.env.VITE_OLLAMA_MODEL || 'gpt-oss:120b'
 
 export function useEmailGenerator() {
   const [generatedEmail, setGeneratedEmail] = useState('')
@@ -18,19 +18,18 @@ export function useEmailGenerator() {
     const tone = TONES.find((t) => t.id === selectedTone)
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      // Llama a una Netlify Function que usa el SDK de Ollama Cloud
+      const response = await fetch('/api/ollama', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': API_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: SYSTEM_PROMPT,
+          model: OLLAMA_MODEL,
+          stream: false,
           messages: [
+            {
+              role: 'system',
+              content: SYSTEM_PROMPT,
+            },
             {
               role: 'user',
               content: buildUserPrompt(thoughts, tone.label, tone.desc, replyContext),
@@ -40,12 +39,22 @@ export function useEmailGenerator() {
       })
 
       if (!response.ok) {
-        const err = await response.json().catch(() => ({}))
-        throw new Error(err?.error?.message || `HTTP ${response.status}`)
+        const rawError = await response.text().catch(() => '')
+        const err = (() => {
+          try {
+            return rawError ? JSON.parse(rawError) : {}
+          } catch {
+            return {}
+          }
+        })()
+
+        throw new Error(
+          err?.error?.message || err?.message || rawError || `HTTP ${response.status}`
+        )
       }
 
       const data = await response.json()
-      const text = data.content?.map((b) => b.text || '').join('') || ''
+      const text = data?.message?.content || data?.response || ''
       setGeneratedEmail(text.trim())
     } catch (e) {
       setError(e.message || 'Ocurrió un error al generar el correo. Intenta de nuevo.')
