@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f1eced7e-b053-4935-ae0c-8b898f8f58d2/deploy-status)](https://app.netlify.com/projects/lettecraft/deploys)
 # ✉ Lettercraft
 
 > Transforma tus ideas en correos impecables con IA.
