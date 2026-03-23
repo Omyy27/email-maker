@@ -1,0 +1,167 @@
+.card {
+  flex: 1;
+  min-height: 500px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  border: 1px solid rgba(59, 125, 216, 0.1);
+  box-shadow: 0 2px 16px rgba(37, 99, 235, 0.05), 0 1px 3px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.cardFilled {
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.1), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  gap: 12px;
+}
+
+.emptyIcon {
+  font-size: 40px;
+  opacity: 0.2;
+  margin-bottom: 8px;
+}
+
+.emptyTitle {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: #8baac8;
+}
+
+.emptySubtitle {
+  font-size: 13px;
+  color: #a8bdd6;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 220px;
+}
+
+.pulsingDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #60a5fa);
+  animation: pulse 1.2s ease-in-out infinite;
+  margin-bottom: 12px;
+}
+
+.outputHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px 0;
+}
+
+.outputMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.outputLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #7a98bc;
+}
+
+.toneBadge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.08);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.02em;
+}
+
+.copyBtn {
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: 1.5px solid #c8d8ec;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a7fbd;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.18s ease;
+  letter-spacing: 0.02em;
+}
+
+.copyBtn:hover {
+  background: #f0f6ff;
+}
+
+.copyBtnDone {
+  background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.25);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 125, 216, 0.15) 20%,
+    rgba(59, 125, 216, 0.15) 80%,
+    transparent
+  );
+  margin: 16px 0;
+}
+
+.emailText {
+  flex: 1;
+  padding: 0 28px;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #1e3454;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  animation: fadeUp 0.3s ease;
+}
+
+.outputFooter {
+  padding: 16px 28px 20px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(59, 125, 216, 0.07);
+  margin-top: 16px;
+}
+
+.regenerateBtn {
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(59, 125, 216, 0.07);
+  font-size: 12px;
+  font-weight: 600;
+  color: #3b7dd8;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.02em;
+  transition: background 0.18s;
+}
+
+.regenerateBtn:hover {
+  background: rgba(59, 125, 216, 0.14);
+}
+
+.error {
+  padding: 24px;
+  color: #c0392b;
+  font-size: 13px;
+  text-align: center;
+}

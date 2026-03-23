@@ -1,0 +1,212 @@
+.root {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── Decorative backgrounds ── */
+.bgMesh {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(59,125,216,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 110%, rgba(99,155,235,0.06) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bgGrid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(59,125,216,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,125,216,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Layout ── */
+.main {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 32px 48px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Card ── */
+.card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 24px 28px;
+  border: 1px solid rgba(59, 125, 216, 0.1);
+  box-shadow: 0 2px 16px rgba(37, 99, 235, 0.05), 0 1px 3px rgba(0,0,0,0.04);
+}
+
+/* ── Label ── */
+.label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px;
+  color: #1a2b4a;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.labelIcon {
+  font-size: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: #3b7dd8;
+  letter-spacing: 0.06em;
+  background: rgba(59, 125, 216, 0.1);
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+
+.hint {
+  font-size: 12.5px;
+  color: #7a98bc;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+/* ── Textarea ── */
+.textarea {
+  width: 100%;
+  background: #f5f8fd;
+  border: 1.5px solid #d8e5f5;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #1e3454;
+  line-height: 1.65;
+  resize: vertical;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 130px;
+}
+
+.textareaSmall {
+  min-height: 100px;
+  font-size: 12px;
+}
+
+.charCount {
+  font-size: 11px;
+  color: #a8bdd6;
+  text-align: right;
+  margin-top: 6px;
+}
+
+/* ── Reply toggle ── */
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d4f7c;
+  font-family: 'DM Sans', sans-serif;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.toggleIcon {
+  color: #3b7dd8;
+  font-size: 16px;
+  width: 14px;
+}
+
+.optionalBadge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #7aaad8;
+  background: rgba(59, 125, 216, 0.08);
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.replyBox {
+  margin-top: 16px;
+  animation: fadeUp 0.2s ease;
+}
+
+/* ── Generate button ── */
+.generateBtn {
+  width: 100%;
+  padding: 18px;
+  border-radius: 16px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: not-allowed;
+  background: #d8e5f5;
+  color: #a8bdd6;
+  transition: all 0.2s ease;
+  letter-spacing: -0.01em;
+}
+
+.generateBtnActive {
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(29, 78, 216, 0.3), 0 2px 6px rgba(29, 78, 216, 0.2);
+}
+
+.generateBtnActive:hover {
+  box-shadow: 0 8px 28px rgba(29, 78, 216, 0.4), 0 3px 8px rgba(29, 78, 216, 0.25);
+  transform: translateY(-1px);
+}
+
+.generateBtnLoading {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  color: #fff;
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.loadingRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .main {
+    grid-template-columns: 1fr;
+    padding: 20px 20px 40px;
+  }
+}
