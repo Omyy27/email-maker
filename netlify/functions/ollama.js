@@ -34,17 +34,24 @@ export const handler = async (event) => {
     const messages = Array.isArray(body.messages) ? body.messages : []
 
     const ollama = new Ollama({
-      host: 'https://ollama.com',
+      host: process.env.OLLAMA_HOST || 'https://ollama.com',
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
     })
 
-    const response = await ollama.chat({
-      model,
-      messages,
-      stream: false,
-    })
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('La solicitud a Ollama Cloud tardó demasiado. Intenta de nuevo.')), 25000)
+    )
+
+    const response = await Promise.race([
+      ollama.chat({
+        model,
+        messages,
+        stream: false,
+      }),
+      timeoutPromise,
+    ])
 
     return {
       statusCode: 200,

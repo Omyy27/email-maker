@@ -3,7 +3,7 @@ import styles from './ToneSelector.module.css'
 
 export default function ToneSelector({ selectedTone, onSelect }) {
   return (
-    <div className={styles.card}>
+    <div className={`card-base ${styles.card}`}>
       <label className={styles.label}>
         <span className={styles.labelIcon}>02</span>
         Elige el tono

@@ -9,13 +9,13 @@ export default function EmailOutput({ email, loading, error, selectedTone, onReg
     navigator.clipboard.writeText(email).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
-    })
+    }).catch(() => {})
   }
 
   const tone = TONES.find((t) => t.id === selectedTone)
 
   return (
-    <div className={`${styles.card} ${email ? styles.cardFilled : ''}`}>
+    <div className={`card-base ${styles.card} ${email ? styles.cardFilled : ''}`}>
       {!email && !loading && (
         <div className={styles.emptyState}>
           <div className={styles.emptyIcon}>✉</div>

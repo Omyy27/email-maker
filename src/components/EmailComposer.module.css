@@ -9,8 +9,8 @@
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(59,125,216,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 110%, rgba(99,155,235,0.06) 0%, transparent 55%);
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(59, 125, 216, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 110%, rgba(99, 155, 235, 0.06) 0%, transparent 55%);
   pointer-events: none;
   z-index: 0;
 }
@@ -19,8 +19,8 @@
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(59,125,216,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,125,216,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(59, 125, 216, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 125, 216, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
@@ -46,12 +46,7 @@
 
 /* ── Card ── */
 .card {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(12px);
-  border-radius: 18px;
   padding: 24px 28px;
-  border: 1px solid rgba(59, 125, 216, 0.1);
-  box-shadow: 0 2px 16px rgba(37, 99, 235, 0.05), 0 1px 3px rgba(0,0,0,0.04);
 }
 
 /* ── Label ── */
@@ -59,27 +54,27 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'DM Serif Display', serif;
+  font-family: var(--font-serif);
   font-size: 17px;
-  color: #1a2b4a;
+  color: var(--color-text-dark);
   margin-bottom: 6px;
   letter-spacing: -0.01em;
 }
 
 .labelIcon {
   font-size: 10px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-weight: 600;
-  color: #3b7dd8;
+  color: var(--color-primary);
   letter-spacing: 0.06em;
   background: rgba(59, 125, 216, 0.1);
   padding: 2px 7px;
-  border-radius: 20px;
+  border-radius: var(--radius-pill);
 }
 
 .hint {
   font-size: 12.5px;
-  color: #7a98bc;
+  color: var(--color-text-muted);
   margin-bottom: 14px;
   line-height: 1.5;
 }
@@ -87,15 +82,15 @@
 /* ── Textarea ── */
 .textarea {
   width: 100%;
-  background: #f5f8fd;
-  border: 1.5px solid #d8e5f5;
-  border-radius: 12px;
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-input);
+  border-radius: var(--radius-xs);
   padding: 14px 16px;
   font-size: 14px;
-  color: #1e3454;
+  color: var(--color-text-primary);
   line-height: 1.65;
   resize: vertical;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   min-height: 130px;
 }
 
@@ -106,7 +101,7 @@
 
 .charCount {
   font-size: 11px;
-  color: #a8bdd6;
+  color: var(--color-text-faded);
   text-align: right;
   margin-top: 6px;
 }
@@ -121,15 +116,15 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  color: #2d4f7c;
-  font-family: 'DM Sans', sans-serif;
+  color: var(--color-text-medium);
+  font-family: var(--font-sans);
   padding: 0;
   width: 100%;
   text-align: left;
 }
 
 .toggleIcon {
-  color: #3b7dd8;
+  color: var(--color-primary);
   font-size: 16px;
   width: 14px;
 }
@@ -139,10 +134,10 @@
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: #7aaad8;
+  color: var(--color-text-accent-light);
   background: rgba(59, 125, 216, 0.08);
   padding: 2px 8px;
-  border-radius: 20px;
+  border-radius: var(--radius-pill);
   text-transform: uppercase;
 }
 
@@ -155,32 +150,32 @@
 .generateBtn {
   width: 100%;
   padding: 18px;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   border: none;
   font-size: 15px;
   font-weight: 600;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   cursor: not-allowed;
-  background: #d8e5f5;
-  color: #a8bdd6;
+  background: var(--bg-button-disabled);
+  color: var(--color-text-faded);
   transition: all 0.2s ease;
   letter-spacing: -0.01em;
 }
 
 .generateBtnActive {
-  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  background: var(--gradient-blue);
   color: #fff;
   cursor: pointer;
-  box-shadow: 0 6px 24px rgba(29, 78, 216, 0.3), 0 2px 6px rgba(29, 78, 216, 0.2);
+  box-shadow: var(--shadow-button);
 }
 
 .generateBtnActive:hover {
-  box-shadow: 0 8px 28px rgba(29, 78, 216, 0.4), 0 3px 8px rgba(29, 78, 216, 0.25);
+  box-shadow: var(--shadow-button-hover);
   transform: translateY(-1px);
 }
 
 .generateBtnLoading {
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%);
   color: #fff;
   cursor: wait;
   opacity: 0.8;

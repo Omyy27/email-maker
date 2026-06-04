@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import Header from './Header'
 import ToneSelector from './ToneSelector'
 import EmailOutput from './EmailOutput'
@@ -13,9 +13,7 @@ export default function EmailComposer() {
 
   const { generatedEmail, loading, error, generate } = useEmailGenerator()
 
-  const handleGenerate = useCallback(() => {
-    generate({ thoughts, selectedTone, replyContext })
-  }, [generate, thoughts, selectedTone, replyContext])
+  const handleGenerate = () => generate({ thoughts, selectedTone, replyContext })
 
   const canGenerate = thoughts.trim().length > 0 && selectedTone
 
@@ -32,7 +30,7 @@ export default function EmailComposer() {
         <section className={styles.column}>
 
           {/* Thoughts */}
-          <div className={styles.card}>
+          <div className={`card-base ${styles.card}`}>
             <label className={styles.label}>
               <span className={styles.labelIcon}>01</span>
               ¿Qué quieres decir?
@@ -49,7 +47,7 @@ export default function EmailComposer() {
           </div>
 
           {/* Reply context (optional) */}
-          <div className={styles.card}>
+          <div className={`card-base ${styles.card}`}>
             <button
               className={styles.toggleBtn}
               onClick={() => setShowReply(!showReply)}
