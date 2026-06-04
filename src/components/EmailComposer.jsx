@@ -2,7 +2,9 @@ import { useState } from 'react'
 import Header from './Header'
 import ToneSelector from './ToneSelector'
 import EmailOutput from './EmailOutput'
+import RichTextEditor from './RichTextEditor'
 import { useEmailGenerator } from '../hooks/useEmailGenerator'
+import { stripHtml } from '../constants'
 import styles from './EmailComposer.module.css'
 
 export default function EmailComposer() {
@@ -15,7 +17,7 @@ export default function EmailComposer() {
 
   const handleGenerate = () => generate({ thoughts, selectedTone, replyContext })
 
-  const canGenerate = thoughts.trim().length > 0 && selectedTone
+  const canGenerate = stripHtml(thoughts).trim().length > 0 && selectedTone
 
   return (
     <div className={styles.root}>
@@ -35,15 +37,13 @@ export default function EmailComposer() {
               <span className={styles.labelIcon}>01</span>
               ¿Qué quieres decir?
             </label>
-            <p className={styles.hint}>Escribe en borrador — sin preocuparte por el estilo.</p>
-            <textarea
-              className={styles.textarea}
-              placeholder="Ej: Necesito pedirle a mi jefe que me apruebe unos días de vacaciones para la próxima semana, pero no quiero que parezca que lo estoy poniendo en un aprieto..."
+            <p className={styles.hint}>Escribe en borrador — usa el formato para dar énfasis.</p>
+            <RichTextEditor
               value={thoughts}
-              onChange={(e) => setThoughts(e.target.value)}
-              rows={6}
+              onChange={setThoughts}
+              placeholder="Ej: Necesito pedirle a mi jefe que me apruebe unos días de vacaciones para la próxima semana, pero no quiero que parezca que lo estoy poniendo en un aprieto..."
             />
-            <div className={styles.charCount}>{thoughts.length} caracteres</div>
+            <div className={styles.charCount}>{stripHtml(thoughts).length} caracteres</div>
           </div>
 
           {/* Reply context (optional) */}

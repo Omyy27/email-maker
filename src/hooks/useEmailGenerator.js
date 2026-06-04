@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { SYSTEM_PROMPT, buildUserPrompt, TONES } from '../constants'
+import { SYSTEM_PROMPT, buildUserPrompt, cleanEmailResponse, TONES } from '../constants'
 
 const OLLAMA_MODEL = import.meta.env.VITE_OLLAMA_MODEL || 'gpt-oss:120b'
 
@@ -55,7 +55,7 @@ export function useEmailGenerator() {
 
       const data = await response.json()
       const text = data?.message?.content || data?.response || ''
-      setGeneratedEmail(text.trim())
+      setGeneratedEmail(cleanEmailResponse(text))
     } catch (e) {
       setError(e.message || 'Ocurrió un error al generar el correo. Intenta de nuevo.')
     } finally {

@@ -41,7 +41,7 @@ export const handler = async (event) => {
     })
 
     const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('La solicitud a Ollama Cloud tardó demasiado. Intenta de nuevo.')), 25000)
+      setTimeout(() => reject(new Error('La solicitud a Ollama Cloud tardó demasiado. Intenta de nuevo.')), 60000)
     )
 
     const response = await Promise.race([

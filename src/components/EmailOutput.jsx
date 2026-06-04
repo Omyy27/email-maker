@@ -1,12 +1,20 @@
 import { useState } from 'react'
-import { TONES } from '../constants'
+import DOMPurify from 'dompurify'
+import { TONES, stripHtml } from '../constants'
 import styles from './EmailOutput.module.css'
 
 export default function EmailOutput({ email, loading, error, selectedTone, onRegenerate }) {
   const [copied, setCopied] = useState(false)
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(email).then(() => {
+    const plainText = stripHtml(email)
+    const blob = new Blob([email], { type: 'text/html' })
+    const plainBlob = new Blob([plainText], { type: 'text/plain' })
+    const item = new ClipboardItem({
+      'text/html': blob,
+      'text/plain': plainBlob,
+    })
+    navigator.clipboard.write([item]).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     }).catch(() => {})
@@ -57,7 +65,10 @@ export default function EmailOutput({ email, loading, error, selectedTone, onReg
 
           <div className={styles.divider} />
 
-          <pre className={styles.emailText}>{email}</pre>
+          <div
+            className={styles.emailText}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(email) }}
+          />
 
           <div className={styles.outputFooter}>
             <button className={styles.regenerateBtn} onClick={onRegenerate}>

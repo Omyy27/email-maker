@@ -126,6 +126,40 @@
   font-family: var(--font-sans);
   font-weight: 300;
   animation: fadeUp 0.3s ease;
+  word-break: break-word;
+}
+
+.emailText p {
+  margin: 0 0 0.8em;
+}
+
+.emailText p:last-child {
+  margin-bottom: 0;
+}
+
+.emailText strong,
+.emailText b {
+  font-weight: 600;
+}
+
+.emailText em,
+.emailText i {
+  font-style: italic;
+}
+
+.emailText ul,
+.emailText ol {
+  padding-left: 24px;
+  margin: 0 0 0.8em;
+}
+
+.emailText li {
+  margin-bottom: 0.25em;
+}
+
+.emailText a {
+  color: var(--color-primary);
+  text-decoration: underline;
 }
 
 .outputFooter {
